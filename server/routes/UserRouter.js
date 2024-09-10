@@ -1,33 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../modals/user-modal"); // Make sure the path to your User model is correct
+const User = require("../modals/user-modal");
+const { v4: uuidv4 } = require('uuid');
 
 // Create a new user
-router.post('/create', async (req, res) => {
-  console.log("Received data:", req.body);  // Check request data structure
-
-  const { uCredentials, uProfile, uAddress } = req.body;
-
-  // Ensure email is present
-  if (!uCredentials || !uCredentials.uEmail) {
-    return res.status(400).send({ error: "Email is required" });
-  }
-
+router.post("/create", async (req, res) => {
   try {
-    const user = new User({
-      uCredentials,
-      uProfile,
-      uAddress,
+    console.log("Received data:", req.body);
+    const userId = uuidv4(); // Generate a unique userId
+    const newUser = new User({
+      userId,  // Set the generated userId
+      ...req.body // Spread the rest of the request body
     });
-    await user.save();
-    res.status(201).send({ message: 'User created successfully' });
-  } catch (err) {
-    console.error("Error creating user:", err);
-    res.status(400).send({ error: err.message });
+    await newUser.save();
+    console.log("User saved:", newUser);
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error("Error saving user:", error.message);
+    res.status(400).json({ error: error.message });
   }
 });
-
-
 
 
 // Get all users
@@ -40,10 +32,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a user by ID
-router.get("/:id", async (req, res) => {
+// Get a user by userId
+router.get("/:userId", async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findOne({ userId: req.params.userId });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -53,13 +45,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Update a user by ID
-router.post("/:id", async (req, res) => {
+// Update a user by userId
+router.post("/:userId", async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const updatedUser = await User.findOneAndUpdate(
+      { userId: req.params.userId },
+      req.body,
+      { new: true, runValidators: true }
+    );
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -69,10 +62,10 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-// Delete a user by ID
-router.delete("/:id", async (req, res) => {
+// Delete a user by userId
+router.delete("/:userId", async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    const deletedUser = await User.findOneAndDelete({ userId: req.params.userId });
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -81,6 +74,28 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+// Check if the phone number exists
+// Check if the phone number exists
+router.get("/check-phone/:uPhone", async (req, res) => {
+  try {
+    const { uPhone } = req.params; // Extract the phone number from URL parameters
+    console.log("Checking phone number:", uPhone); // Log the phone number
+    
+    const user = await User.findOne({ "uProfile.uPhone": uPhone }); // Query the database for the phone number
+    console.log("Found user:", user); // Log the result
+    
+    if (user) {
+      return res.status(200).json({ exists: true });
+    } else {
+      return res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 module.exports = router;
+
 

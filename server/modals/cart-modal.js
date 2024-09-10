@@ -1,24 +1,59 @@
 const mongoose = require("mongoose");
 
-const cartScehma = mongoose.Schema(
-  {
-    userId: { type: String, required: [true, "userId is required"] },
-    prodId: { type: String, required: [true, "prodId is required"] },
-    pName: { type: String, required: [true, "pName is required"] },
-    pDescription: { type: String },
-    pRating: { type: Number, required: [true, "pRating is required"] },
-    pCategory: { type: String, required: [true, "pCategory is required"] },
-    quantity: { type: Number, required: [true, "quantity is required"] },
-    price: { type: Number, required: [true, "price is required"] },
-    pDiscount: { type: Number, required: [true, "price is required"] },
-    pShippingCharges: {
-      type: Number,
-      required: [true, "Shipping Charges is required"],
-    },
-    color: { type: String, required: [true, "color is required"] },
-    image: { type: String, required: [true, "image is required"] },
+const productSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: [true, "userId is required"],
   },
-  { collection: "Cart", timestamps: true }
-);
+  prodId: {
+    type: String,
+    required: [true, "prodId is required"],
+  },
+  name: {
+    type: String,
+    required: [true, "Product Name is required"],
+  },
+  description: {
+    type: String,
+  },
+  origin: {
+    type: String, 
+    required: [true, "Product Origin is required"],
+  },
+  category: {
+    type: String,
+    required: [true, "Product Category is required"],
+  },
+  season: {
+    type: String,
+    required: [true, "Season is required"],
+  },
+  by_size:{
+    type: String,
+    required: [true, "size is required"],
+  },
+  price: {
+    type: Number,
+    required: [true, "Price is required"],
+  },
+  pDiscount: {
+    type: Number,
+    required: [true, "Discount is required"],
+  },
+  pShippingCharges: {
+    type: Number,
+    required: [true, "Shipping Charges are required"],
+  },
+  : {
+    type: String,
+    required: [true, "Color is required"],
+  },
+  image: {
+    type: String,
+    required: [true, "Image is required"],
+  },
+});
 
-module.exports = mongoose.model("cart", cartScehma);
+
+
+module.exports = mongoose.model("Product", productSchema);

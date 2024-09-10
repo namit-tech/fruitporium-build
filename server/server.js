@@ -31,24 +31,10 @@ mongoose
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
-
-// Routes
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
-
-
-// Handle any other route and render React app
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client/build", "index.html"));
-// });
-
 app.use("/api/users", UserRouter);
 
 // Start server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
