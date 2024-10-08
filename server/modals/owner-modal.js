@@ -1,19 +1,34 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
-const ownerSchema = mongoose.Schema({
-  fullname: {
+// Admin Schema
+const adminSchema = new mongoose.Schema({
+  username: {
     type: String,
-    minLength: 3,
-    trim: true,
+    required: true,
+    unique: true,
   },
-  email: String,
-  password: String,
-  products: {
-    type: Array,
-    default: [],
+  password: {
+    type: String,
+    required: true,
   },
-  picture: String,
-  gstin: String,
 });
 
-module.exports = mongoose.model("owner", ownerSchema);
+// Method to compare entered password with stored password
+adminSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Hash password before saving admin
+adminSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+const Admin = mongoose.model("Admin", adminSchema);
+
+module.exports = Admin;

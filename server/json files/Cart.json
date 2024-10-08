@@ -2,7 +2,10 @@
   {
     "Sno.": 1,
     "Name": "Washington Apple",
-    "Category": ["Traditional Fruits", "Apple Farm"],
+    "Category":[
+      { "categoryOne": "Traditional fruits"},
+      { "categoryTwo": "Apple farm"}
+    ],
     "Description": "The Washington Apple is a crisp, juicy variety known for its sweet-tart flavor and vibrant red color. Grown in the fertile orchards of Washington State, these apples are perfect for snacking, baking, and adding a refreshing crunch to salads. Enjoy the taste of the Pacific Northwest with every bite!",
     "Origin": "U.S.A (Washington)",
     "Season": "12 Months",
