@@ -37,12 +37,12 @@ app.use("/api/users", UserRouter);
 app.use('/api/auth', AuthRouter); 
 app.use("/api/", ProductRouter);
 
-app.use(express.static(path.join(__dirname, "../client/build"))); // Adjust the path to your build folder
+// app.use(express.static(path.join(__dirname, "../client/build"))); // Adjust the path to your build folder
 
-// The "catchall" handler: for any request that doesn't match one above, send back the React app.
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html")); // Adjust the path to your build folder
-});
+// // The "catchall" handler: for any request that doesn't match one above, send back the React app.
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html")); // Adjust the path to your build folder
+// });
 
 // Start server
 const port = process.env.PORT || 5000;

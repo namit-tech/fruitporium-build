@@ -24,10 +24,6 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Product Category is required"],
   },
-  season: {
-    type: String,
-    required: [true, "Season is required"],
-  },
   by_size:{
     type: String,
     required: [true, "size is required"],
@@ -39,14 +35,6 @@ const productSchema = new mongoose.Schema({
   pDiscount: {
     type: Number,
     required: [true, "Discount is required"],
-  },
-  pShippingCharges: {
-    type: Number,
-    required: [true, "Shipping Charges are required"],
-  },
-  : {
-    type: String,
-    required: [true, "Color is required"],
   },
   image: {
     type: String,
