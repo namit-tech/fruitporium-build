@@ -2,7 +2,7 @@
   {
     "Sno.": 1,
     "Name": "Washington Apple",
-    "Category": [ "Traditional fruits", "Apple Farm"],
+    "Category": ["Traditional fruits", "Apple Farm"],
     "Description": "The Washington Apple is a crisp, juicy variety known for its sweet-tart flavor and vibrant red color. Grown in the fertile orchards of Washington State, these apples are perfect for snacking, baking, and adding a refreshing crunch to salads. Enjoy the taste of the Pacific Northwest with every bite!",
     "Origin": "U.S.A (Washington)",
     "Season": "12 Months",
@@ -243,6 +243,24 @@
     "Sno.": 14,
     "Name": "Golden Delicious (Indian)",
     "Category": ["Traditional Fruits", "Apple Farm"],
+    "Description": "The Golden Delicious Apple is a sweet and juicy Indian variety with a smooth, golden-yellow skin. Known for its mellow flavor and tender texture, it\u2019s perfect for snacking, adding to salads, or incorporating into baked goods. Ideal for those who enjoy a mildly sweet and versatile apple.",
+    "Origin": "India",
+    "by_size": [
+      { "size": "500 gram/piece", "price": 260, "pDiscount": 220 },
+      { "size": "1 kg/piece", "price": 460, "pDiscount": 420 }
+    ],
+    "Prices (approx) / Units": "According to the Market (Fluctuats Daily)",
+    "Shelf Life": "5-7 Days",
+    "Cold Storage required or not": "Required",
+    "Nutrient Value & Health Benefits": "Golden Delicious Apples are rich in dietary fiber, vitamins A and C, and antioxidants. They support digestive health, boost immune function, and help protect against oxidative stress, contributing to overall well-being.",
+    "Storage and Uses": "Store Golden Delicious Apples in a cool, dry place or in the refrigerator to keep them fresh and crisp for up to two weeks. Ideal for snacking, they also enhance salads, desserts, and baked goods with their sweet flavor and tender texture. Their versatility makes them a great addition to a variety of dishes.",
+    "Proxy Images uploaded": "No",
+    "Photoshoot done or not": "Not"
+  },
+  {
+    "Sno.": 15,
+    "Name": "Banana",
+    "Category": ["banana"],
     "Description": "The Golden Delicious Apple is a sweet and juicy Indian variety with a smooth, golden-yellow skin. Known for its mellow flavor and tender texture, it\u2019s perfect for snacking, adding to salads, or incorporating into baked goods. Ideal for those who enjoy a mildly sweet and versatile apple.",
     "Origin": "India",
     "by_size": [
